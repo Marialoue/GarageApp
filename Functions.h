@@ -32,7 +32,7 @@ public:
     }
 
     void removeVehicle(Garage* x){ //remove vehicle from list of vehicles
-        //GarageVehicles.erase(x);
+        
         counter--;
     }
 
@@ -57,13 +57,15 @@ protected:
     string insurranceNo; 
 
 public:
-
+    //constructor
     Vehicle(string x, string y, int z) : registrationNo(x), color(y), noOfWheels(z) {
         cout << "Vehicle constructor" << endl;
-    } //constructor
+    } 
+    
+    //destructor
     ~Vehicle(){
         cout << "Vehicle destructor" << endl;
-    } //destructor
+    } 
 
     virtual void printProperties(){}   
 };
@@ -75,5 +77,3 @@ public:
     //new vehicle with no properties
     //return (new newVehicle); (same as above, only compressed)
 }*/
-
-/* use counter in for loop when adding or removing vehicle */
