@@ -1,51 +1,9 @@
 /*  Functions.h header file to Main.cpp in GarageApp */
 
-#pragma once //the compiler will include the header file only once when compiling the source code
+#pragma once // the compiler will include the header file only once when compiling the source code
 using namespace std;
 
-//This is the building "Garage" where we store all vehicles, later on we can add other variables that effect the building, e.g air pollution
-class Garage{
-protected:
-    int x; //x no of vehicles
-    int counter; //for adding and removing vehicles
-    int maxParkingSpaces; //setting maximum no of parking spaces
-public:
-    
-    virtual void printProperties() = 0; //function to print properties to be used in all subclasses
-
-    vector<Garage *> GarageVehicles; //we will store all vehicles here, there will be a fixed no of spaces available
-    
-    void vehicleIndex(){ 
-        cout << "There are " << GarageVehicles.size() << " vehicles in the garage." << endl;
-    }
-
-    void listOfVehicles(){
-        cout << "These are the vehicles in the garage right now:" << endl;
-        for (int i = 0; i < GarageVehicles.size(); i++){
-            cout << GarageVehicles[i] << endl;
-            }
-    }
-
-    void addVehicle(Garage* x){  //add vehicle to list of vehicles
-        GarageVehicles.push_back(x);
-        counter++;
-    }
-
-    void removeVehicle(Garage* x){ //remove vehicle from list of vehicles
-        
-        counter--;
-    }
-
-    Garage(){
-        cout << "Garage constructor" << endl;
-    } //constructor
-    
-    ~Garage(){
-        cout << "Garage destructor" << endl;
-    } //destrctor
-}; 
-
-//All vehicles will inherit this class
+// all vehicles will inherit this class
 class Vehicle : public Garage{ 
 protected:
     int noOfWheels;
@@ -57,23 +15,90 @@ protected:
     string insurranceNo; 
 
 public:
-    //constructor
-    Vehicle(string x, string y, int z) : registrationNo(x), color(y), noOfWheels(z) {
+    Vehicle(){} // default constructor
+    
+    Vehicle(string x, string y, int z) : registrationNo(x), color(y), noOfWheels(z) { // constructor
         cout << "Vehicle constructor" << endl;
     } 
     
-    //destructor
-    ~Vehicle(){
-        cout << "Vehicle destructor" << endl;
-    } 
+    virtual void printProperties() = 0;
 
-    virtual void printProperties(){}   
+    ~Vehicle(){ // destructor
+        cout << "Vehicle destructor" << endl;
+    }  
 };
 
-//Function that points to vehicle class that makes a new vehicle
-/* Vehicle* makeNewVehicle(){
-    Vehicle* newVehicle = new Vehicle;
-        return newVehicle;
-    //new vehicle with no properties
-    //return (new newVehicle); (same as above, only compressed)
-}*/
+class car : public Vehicle{
+    protected:
+    public:
+
+    car(string x, string y, int z) : Vehicle(x, y, z) {
+        cout << "Car constructor" << endl;
+        cout << "new car made" << endl;
+    }
+
+    void printProperties(){
+        cout << "Registration number:" << this->registrationNo << " Color: " << this->color << " Number of wheels:" << this->noOfWheels << endl;
+    }
+    
+    ~car(){
+        cout << "Car destructor" << endl;
+    }
+};
+
+class motorcycle : public Vehicle{
+    protected:
+    public:
+    motorcycle(string x, string y, int z) : Vehicle(x,y,z) {
+    cout << "Motorcycle constructor" << endl;
+    }
+
+    void printProperties(){
+        cout << "Registration number:" << this->registrationNo << " Color: " << this->color << " Number of wheels:" << this->noOfWheels << endl;
+    }
+
+    ~motorcycle(){
+    cout << "Motorcycle destructor" << endl;
+    }
+};
+
+// this is the building "Garage" where we store all vehicles, later on we can add other variables that effect the building, e.g air pollution
+class Garage{
+protected:
+    int x; // x no of vehicles
+    int counter; // for adding and removing vehicles
+    int maxParkingSpaces; // setting maximum no of parking spaces
+public:
+        Garage(){ // constructor
+        cout << "Garage constructor" << endl;
+    }
+
+    vector<Vehicle *> GarageVehicles; // we will store all vehicles here, there will be a fixed no of spaces available
+    
+    void vehicleIndex(){ 
+        cout << "There are " << GarageVehicles.size() << " vehicles in the garage." << endl;
+    }
+
+    void listOfVehicles( vector<Vehicle*> GarageVehicles ){
+        cout << "These are the vehicles in the garage right now:" << endl;
+        for (int i = 0; i < GarageVehicles.size(); i++){
+            cout << GarageVehicles[i] << endl;
+            }
+    }
+
+    void addVehicle( Vehicle* x ){  //add vehicle to list of vehicles
+        GarageVehicles.push_back(x);
+        cout << counter++ << endl;
+    }
+
+    void removeVehicle( Vehicle* x ){ //remove vehicle from list of vehicles
+        for(vector<Vehicle* > ::iterator it = GarageVehicles.begin(); it != GarageVehicles.end(); it++)
+            // cout << * it << endl // loops through and prints all indexes in the vector
+            GarageVehicles.erase(it); //deletes the last index in vector ?
+        cout << counter-- << endl;
+    }
+
+    ~Garage(){ // destructor
+        cout << "Garage destructor" << endl;
+    } 
+}; 
