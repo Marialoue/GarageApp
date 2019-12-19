@@ -8,23 +8,28 @@
 using namespace std;
 
 int main(){ 
-	Garage* myGarage; //pointer (because garage class is abstract) to myGarage
-	//creating cars with function makeNewVehicle
-	//Vehicle* car = makeNewVehicle("4", "GFD543", "Blue"); //makes new object called "car" of Vehicle class
-	// Vehicle* car2 = makeNewVehicle();
-	
-	//creating car3 locally
-	Vehicle* car2 = new Vehicle("ERT 345", "Red", 4);
-	Vehicle* car3 = new Vehicle("SFD 243", "Black", 4);
-	// Vehicle* car4 = makeNewVehicle();
+	Garage* myGarage = new Garage; // pointer (because garage class is abstract) to myGarage
+
+	// creating cars from car class
+	car* car1 = new car("ERT 345", "Red", 4);
+	car* car2 = new car("SFD 243", "Black", 4);
+
+	// creating motorcycles from motorcycle class
+	motorcycle* motorcycle1 = new motorcycle("ERT 345", "Red", 4);
+	motorcycle* motorcycle2 = new motorcycle("SFD 243", "Black", 4);
+
+	myGarage->addVehicle(car1);
+	myGarage->addVehicle(car2);
+	myGarage->addVehicle(motorcycle1);
+	myGarage->addVehicle(motorcycle2);
+		cout << endl;
+	myGarage->vehicleIndex();
+		cout << endl;
+	myGarage->listOfVehicles(myGarage->GarageVehicles);
 
 
+	delete car1;
 	delete car2;
-	delete car3;
-	// vector<Garage *> localVehicle; //vector with type Garage (class) and name localVehicle
-	// localVehicle.push_back(car2);//adding object car2 in vector localVehicle
-	// cout << localVehicle.size() << endl;
-	// cout << localVehicle[0] << endl;
-
-	//cout << localVehicle[0]->printProperties() << endl;
+	delete motorcycle1;
+	delete motorcycle2;
 }
