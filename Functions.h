@@ -31,11 +31,11 @@ public:
         cout << "New vehicle made";
     }
 
-    virtual void printVehicleAttribut() = 0; // pure virtual function makes this class abstract
+    virtual void printVehicleAttribut() = 0; // pure virtual function makes this class abstract, all subclasses will call this function but with different outcome
     string printRegNo() //used in search for reg no
     {
         return registrationNo;
-    }
+    };
 
     ~Vehicle() {} // destructor
 };
@@ -44,21 +44,18 @@ class bike : public Vehicle
 {
 protected:
     int gears;
-    string electric;
 
 public:
-    bike(string a, string b, string c, int x, int y, int bikeGears, string bikeElectic) : Vehicle(a, b, c, x, y)
+    bike(string a, string b, string c, int x, int y, int bikeGears) : Vehicle(a, b, c, x, y)
     {
         cout << " and it's a bike" << endl;
         vehicleType = "Bike";
         gears = bikeGears;
-        electric = bikeElectic;
         bikeCounter++;
     }
     void printVehicleAttribut()
     {
         cout << "... " << this->vehicleType << " ...\nBrand: " << this->brand << "\nColor: " << this->color << "\nGears: " << this->gears << "\nYear: " << this->year << "Wheels:" << this->noOfWheels << endl;
-        ;
     }
 
     ~bike()
@@ -85,7 +82,6 @@ public:
     void printVehicleAttribut()
     {
         cout << "... " << this->vehicleType << " ...\nBrand: " << this->brand << "\nColor: " << this->color << "\nInsurrance no: " << this->insurranceNo << "\nModel:" << this->model << "\nYear: " << this->year << "Wheels:" << this->noOfWheels << endl;
-        ;
     }
     ~motorcycle()
     {
@@ -96,19 +92,18 @@ public:
 class car : public Vehicle
 {
 protected:
-    string cabriolet;
+    string model;
 
 public:
-    car(string a, string b, string c, int x, int y, string carCabriolet) : Vehicle(a, b, c, x, y)
+    car(string a, string b, string c, int x, int y, string model) : Vehicle(a, b, c, x, y)
     {
         cout << " and it's a car" << endl;
         vehicleType = "Car";
-        carCabriolet = cabriolet;
         carCounter++;
     }
     void printVehicleAttribut()
     {
-        cout << "... " << this->vehicleType << " ...\nBrand: " << this->brand << "\nColor: " << this->color << "\nCabriolet: " << this->cabriolet << "\nYear: " << this->year << "Wheels:" << this->noOfWheels << endl;
+        cout << "... " << this->vehicleType << " ...\nBrand: " << this->brand << "\nColor: " << this->color << "\nModel: " << this->model << "\nYear: " << this->year << "Wheels:" << this->noOfWheels << endl;
     }
     ~car()
     {
@@ -131,7 +126,6 @@ public:
     void printVehicleAttribut()
     {
         cout << "... " << this->vehicleType << " ...\nBrand: " << this->brand << "\nColor: " << this->color << "\nSeats: " << this->seats << "\nYear: " << this->year << "Wheels:" << this->noOfWheels << endl;
-        ;
     }
     ~bus()
     {
@@ -155,7 +149,6 @@ public:
     void printVehicleAttribut()
     {
         cout << "... " << this->vehicleType << " ...\nBrand: " << this->brand << "\nColor: " << this->color << "\nWeight: " << this->weight << "\nYear: " << this->year << "Wheels:" << this->noOfWheels << endl;
-        ;
     }
     ~truck()
     {
@@ -181,18 +174,18 @@ public:
         cout << "There are " << this->GarageVehicles.size() << " vehicles in the garage right now." << endl;
     }
 
-    void listOfVehicles() // this function will print all vehicle types in the garage
+    void listOfVehicles()
     {
         cout << "These vehicles are in the garage right now" << endl;
         for (int i = 0; i < GarageVehicles.size(); i++)
         {
-            cout << GarageVehicles[i]->printVehicleAttribut(); // should print all vehicles and their attributes
+            cout << GarageVehicles[i]->printVehicleAttribut << endl;
         }
-
-        cout << "no of bikes: " << bikeCounter << endl;
-        cout << "no of motorcycles: " << motorcycleCounter << endl;
-        cout << "no of cars: " << carCounter << endl;
-        cout << "no of bus: " << busCounter << endl;
+            cout << "Number of bikes: " << bikeCounter << endl;
+            cout << "Number of motorcycles: " << motorcycleCounter << endl;
+            cout << "Number of cars: " << carCounter << endl;
+            cout << "Number of buses: " << busCounter << endl;
+            cout << "Number of trucks: " << truckCounter << endl;
     }
 
     void addVehicle(Vehicle *x) // add vehicle to list of vehicles - works
@@ -208,18 +201,18 @@ public:
         }
     }
 
-    Vehicle *searchReg(string searchRegNo)
+    Vehicle* searchReg(string searchReg)
     {
         for (int i = 0; i < GarageVehicles.size(); i++)
         {
-            if (GarageVehicles[i]->printRegNo() == searchRegNo)
+            if (GarageVehicles[i]->printRegNo == searchReg)
             {
-                cout << "I have found your vehicle" << endl;
-                cout << GarageVehicles[i]->printVehicleAttribut() << endl;
+                cout << "Your vehicle is found." << endl;
+                return GarageVehicles[i]->printVehicleAttribut;
             }
             else
             {
-                cout << "Your vehicle can not be found" << endl;
+                cout << "Your vehicle is not found" << endl;
             }
         }
     }
@@ -247,19 +240,21 @@ public:
 
 void menu()
 {
-    cout << "Welcom to the garage!\nWhat would you like to do?" << endl;
-    cout << "Create garage\tEnter 1" << endl; // creates a new object of class garage
-    cout << "See garage\tEnter 2" << endl;    // should call list of vehicles function
-    cout << "Add vehicle\tEnter 3" << endl;
-    cout << "Remove vehicle\tEnter 4" << endl;
-    cout << "Search vehicle\tEnter 5" << endl;
-    cout << "Destroy garage\tEnter 6" << endl;
-    cout << "Exit\tEnter 0\n" << endl;
-    cout << "What would you like to do?" << endl;
+    cout << endl;
+    cout << "Welcome to the garage!\nWhat would you like to do?" << endl;
+    cout << "______________________"<< endl;
+    cout << "See garage\tEnter 1" << endl;    // should call list of vehicles function
+    cout << "Add vehicle\tEnter 2" << endl;
+    cout << "Remove vehicle\tEnter 3" << endl;
+    cout << "Search vehicle\tEnter 4" << endl;
+    cout << "Destroy garage\tEnter 5" << endl;
+    cout << "______________________"<< endl;
+    cout << "Exit?\tEnter 0\n" << endl;
     cout << endl;
 }
 
 void addVehicleMenu(){
+    cout << endl;
     cout <<"What vehicle would you like to add?"<< endl;
     cout <<"Cool bike\tEnter 1"<< endl;
     cout <<"Even cooler motorcycle\tEnter 2"<< endl;

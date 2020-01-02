@@ -11,136 +11,127 @@ using namespace std;
 int main()
 {								   // default garage
 	Garage *myGarage = new Garage; // pointer (because garage class is abstract) to myGarage
-
+	
 	do
 	{
 		cout << "Before we start, how many parking spaces would you like to have in your garage?" << endl;
 		cin >> maxParkingSpaces;
-		cout << endl;
 		menu();
 		cin >> userInput;
-		cout << endl;
 
-			string inBrand;
-			string regNo;
-			string inColor;
-			int inYear;
-			int wheels;
-			int gears;
-			string electric;
-			string insurrance;
-			string model;
-			string cabriolet;
-			int seats;
-			string weight;
+		// general variables for all vehicles
+		string inBrand;
+		string regNo;
+		string inColor;
+		int inYear;
+		int inWheels;
+		// specific variables for different vehicles
+		int inGears;
+		string inInsurrance;
+		string inModel;
+		int inSeats;
+		string inWeight;
+
 		switch (userInput)
 		{
-		case 1: // create garage - this must be done before everything else
-			break;
-
-		case 2: // see garage
+		case 1: // see garage
 			myGarage->listOfVehicles();
 			break;
 
-		case 3: // add vehicle
+		case 2: // add vehicle
 			addVehicleMenu();
 			cin >> userInput;
 			
 			if (userInput == 1) // adding a bike
 			{
-
-
-				cout << "Enter inBrand: " << endl;
+				cout << "Enter brand: " << endl;
 				cin >> inBrand;
 				cout << "what is your registrations nr?" << endl;
 				cin >> regNo;
-				cout << "What inColor is it?" << endl;
+				cout << "What color is it?" << endl;
 				cin >> inColor;
-				cout << "From what inYear?" << endl;
+				cout << "From what year?" << endl;
 				cin >> inYear;
 				cout << "How many wheels are there?" << endl;
-				cin >> wheels;
+				cin >> inWheels;
 				cout << "How many gears?" << endl;
-				cin >> gears;
-				cout << "Is it electric? [yes/no]" << endl;
-				cin >> electric;
+				cin >> inGears;
 
-				bike *bike = new bike(inBrand, regNo, inColor, inYear, wheels, gears, electric);
+				bike *bike = new bike(inBrand, regNo, inColor, inYear, inWheels, inGears);
 				myGarage->addVehicle(bike);
 			}
 
 			if (userInput == 2) // adding a motorcycle
 			{
-				cout << "Enter inBrand: " << endl;
+				cout << "Enter brand: " << endl;
 				cin >> inBrand;
 				cout << "what is your registrations nr?" << endl;
 				cin >> regNo;
-				cout << "What inColor is it?" << endl;
+				cout << "What color is it?" << endl;
 				cin >> inColor;
-				cout << "From what inYear?" << endl;
+				cout << "From what year?" << endl;
 				cin >> inYear;
 				cout << "How many wheels are there?" << endl;
-				cin >> wheels;
+				cin >> inWheels;
 				cout << "Do you have an insurrance no?" << endl;
-				cin >> insurrance;
+				cin >> inInsurrance;
 				cout << "Which model is it?" << endl;
-				cin >> model;
-				motorcycle *motorcycle = new motorcycle(inBrand, regNo, inColor, inYear, wheels, insurrance, model);
+				cin >> inModel;
+				motorcycle *motorcycle = new motorcycle(inBrand, regNo, inColor, inYear, inWheels, inInsurrance, inModel);
 				myGarage->addVehicle(motorcycle);
 			}
 
 			if (userInput == 3) // add car
 			{
-				cout << "Enter inBrand: " << endl;
+				cout << "Enter brand: " << endl;
 				cin >> inBrand;
 				cout << "what is your registrations nr?" << endl;
 				cin >> regNo;
-				cout << "What inColor is it?" << endl;
+				cout << "What color is it?" << endl;
 				cin >> inColor;
-				cout << "From what inYear?" << endl;
+				cout << "From what year?" << endl;
 				cin >> inYear;
 				cout << "How many wheels are there?" << endl;
-				cin >> wheels;
-				cout << "Is it an cabriolet? [yes/no]" << endl;
-				cin >> cabriolet;
-				Vehicle *car = new car(inBrand, regNo, inColor, inYear, wheels, cabriolet);
+				cin >> inWheels;
+				cout << "What model?" << endl;
+				cin >> inModel;
+				car *car = new car(inBrand, regNo, inColor, inYear, inWheels, inModel);
 				myGarage->addVehicle(car); 
 			}
-			
+
 			if (userInput == 4) // add bus
 			{
-				cout << "Enter inBrand: " << endl;
+				cout << "Enter brand: " << endl;
 				cin >> inBrand;
 				cout << "what is your registrations nr?" << endl;
 				cin >> regNo;
-				cout << "What inColor is it?" << endl;
+				cout << "What color is it?" << endl;
 				cin >> inColor;
-				cout << "From what inYear?" << endl;
+				cout << "From what year?" << endl;
 				cin >> inYear;
 				cout << "How many wheels are there?" << endl;
-				cin >> wheels;
+				cin >> inWheels;
 				cout << "How mega is your bus (in seats)?" << endl;
-				cin >> seats;
-
-				bus *bus = new bus(inBrand, regNo, inColor, inYear, wheels, seats);
+				cin >> inSeats;
+				bus *bus = new bus(inBrand, regNo, inColor, inYear, inWheels, inSeats);
 				myGarage->addVehicle(bus);
 			}
 			if (userInput == 5) // add truck
 			{
-				cout << "Enter inBrand: " << endl;
+				cout << "Enter brand: " << endl;
 				cin >> inBrand;
 				cout << "what is your registrations nr?" << endl;
 				cin >> regNo;
-				cout << "What inColor is it?" << endl;
+				cout << "What color is it?" << endl;
 				cin >> inColor;
-				cout << "From what inYear?" << endl;
+				cout << "From what year?" << endl;
 				cin >> inYear;
 				cout << "How many wheels are there?" << endl;
-				cin >> wheels;
+				cin >> inWheels;
 				cout << "How mega is your truck [light/heavy]" << endl;
-				cin >> weight;
+				cin >> inWeight;
 
-				truck *truck = new truck(inBrand, regNo, inColor, inYear, wheels, weight);
+				truck *truck = new truck(inBrand, regNo, inColor, inYear, inWheels, inWeight);
 				myGarage->addVehicle(truck);
 			}
 			break;
@@ -158,9 +149,12 @@ int main()
 			break;
 
 		case 6: // destroy garage
-			delete myGarage;
+		// myGarage->garageVehicles.clear();
+		// delete myGarage;
+
 		default:
 			break;
 		}
 	} while (userInput != 0);
+	cout << "Until next time" << endl;
 }
