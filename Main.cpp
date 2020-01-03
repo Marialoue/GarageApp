@@ -42,24 +42,24 @@ int main()
 			break;
 
 		case 2: // add vehicle
-			if (myGarage->GarageVehicles.size() < maxParkingSpaces )
+			if (myGarage->GarageVehicles.size() < maxParkingSpaces ) // this function could be moved to Functions.h header, with the below if statements
 			{
 				addVehicleMenu();
 				cin >> userInput;
 
 			if (userInput == 1) // add bike
 			{
-				cout << "Enter brand: " << endl;
+				cout << "Enter brand: ";
 				cin >> inBrand;
-				cout << "what is your registrations nr?" << endl;
+				cout << "what is your registrations nr? ";
 				cin >> regNo;
-				cout << "What color is it?" << endl;
+				cout << "What color is it? ";
 				cin >> inColor;
-				cout << "From what year?" << endl;
+				cout << "From what year? ";
 				cin >> inYear;
-				cout << "How many wheels are there?" << endl;
+				cout << "How many wheels are there? ";
 				cin >> inWheels;
-				cout << "How many gears?" << endl;
+				cout << "How many gears? ";
 				cin >> inGears;
 
 				bike *bike1 = new bike(inBrand, regNo, inColor, inYear, inWheels, inGears);
@@ -68,19 +68,19 @@ int main()
 
 			if (userInput == 2) // add motorcycle
 			{
-				cout << "Enter brand: " << endl;
+				cout << "Enter brand: ";
 				cin >> inBrand;
-				cout << "what is your registrations nr?" << endl;
+				cout << "what is your registrations nr? ";
 				cin >> regNo;
-				cout << "What color is it?" << endl;
+				cout << "What color is it? ";
 				cin >> inColor;
-				cout << "From what year?" << endl;
+				cout << "From what year? ";
 				cin >> inYear;
-				cout << "How many wheels are there?" << endl;
+				cout << "How many wheels are there? ";
 				cin >> inWheels;
-				cout << "Enter insurrance no:" << endl;
+				cout << "Enter insurrance no: ";
 				cin >> inInsurrance;
-				cout << "Which model is it?" << endl;
+				cout << "Which model is it? ";
 				cin >> inModel;
 				motorcycle *motorcycle1 = new motorcycle(inBrand, regNo, inColor, inYear, inWheels, inInsurrance, inModel);
 				myGarage->addVehicle(motorcycle1);
@@ -88,17 +88,17 @@ int main()
 
 			if (userInput == 3) // add car
 			{
-				cout << "Enter brand: " << endl;
+				cout << "Enter brand: ";
 				cin >> inBrand;
-				cout << "what is your registrations nr?" << endl;
+				cout << "what is your registrations nr? ";
 				cin >> regNo;
-				cout << "What color is it?" << endl;
+				cout << "What color is it? ";
 				cin >> inColor;
-				cout << "From what year?" << endl;
+				cout << "From what year? ";
 				cin >> inYear;
-				cout << "How many wheels are there?" << endl;
+				cout << "How many wheels are there? ";
 				cin >> inWheels;
-				cout << "What model?" << endl;
+				cout << "What model? ";
 				cin >> inModel;
 				car *car1 = new car(inBrand, regNo, inColor, inYear, inWheels, inModel);
 				myGarage->addVehicle(car1); 
@@ -106,17 +106,17 @@ int main()
 
 			if (userInput == 4) // add bus
 			{
-				cout << "Enter brand: " << endl;
+				cout << "Enter brand: ";
 				cin >> inBrand;
-				cout << "what is your registration no?" << endl;
+				cout << "what is your registrations nr? ";
 				cin >> regNo;
-				cout << "What color is it?" << endl;
+				cout << "What color is it? ";
 				cin >> inColor;
-				cout << "From what year?" << endl;
+				cout << "From what year? ";
 				cin >> inYear;
-				cout << "How many wheels are there?" << endl;
+				cout << "How many wheels are there? ";
 				cin >> inWheels;
-				cout << "How mega is your bus (in seats)?" << endl;
+				cout << "How mega is your bus (in seats)? ";
 				cin >> inSeats;
 				bus *bus1 = new bus(inBrand, regNo, inColor, inYear, inWheels, inSeats);
 				myGarage->addVehicle(bus1);
@@ -124,19 +124,18 @@ int main()
 
 			if (userInput == 5) // add truck
 			{
-				cout << "Enter brand: " << endl;
+				cout << "Enter brand: ";
 				cin >> inBrand;
-				cout << "what is your registrations nr?" << endl;
+				cout << "what is your registrations nr? ";
 				cin >> regNo;
-				cout << "What color is it?" << endl;
+				cout << "What color is it? ";
 				cin >> inColor;
-				cout << "From what year?" << endl;
+				cout << "From what year? ";
 				cin >> inYear;
-				cout << "How many wheels are there?" << endl;
+				cout << "How many wheels are there? ";
 				cin >> inWheels;
-				cout << "How mega is your truck [light/heavy]" << endl;
+				cout << "What it the weight of your truck [light/heavy]? ";
 				cin >> inWeight;
-
 				truck *truck1 = new truck(inBrand, regNo, inColor, inYear, inWheels, inWeight);
 				myGarage->addVehicle(truck1);
 			}
@@ -149,7 +148,7 @@ int main()
 			
 			break;
 
-		case 3: // remove vehicle - works
+		case 3: // remove vehicle
 			cout << "You need registration number to remove vehicle, enter now:" << endl;
 			cin >> userSearch;
 			myGarage->removeVehicle(userSearch);

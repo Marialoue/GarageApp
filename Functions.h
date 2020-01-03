@@ -157,7 +157,7 @@ public:
     }
     void printVehicleAttribut()
     {
-        cout << "... " << this->vehicleType << " ...\nBrand:\t" << this->brand << "\nReg no:\t" << this->registrationNo << "\nColor:\t" << this->color << "\nYear:\t" << this->year << "\nWheels:\t" << this->noOfWheels << "\nWeight:\t" << this->weight<< "\n" << endl;
+        cout << "... " << this->vehicleType << " ...\nBrand:\t" << this->brand << "\nReg no:\t" << this->registrationNo << "\nColor:\t" << this->color << "\nYear:\t" << this->year << "\nWheels:\t" << this->noOfWheels << "\nWeight:\t" << this->weight << "\n" << endl;
     }
     ~truck()
     {
@@ -166,7 +166,7 @@ public:
     }
 };
 
-// this is the building "Garage" where we store all vehicles, later on we can add other variables that effect the building, e.g air pollution - this will not happen
+// "blueprint" for the building Garage where we store all vehicles - here one could add other variables related to the building e.g air pollution. 
 class Garage
 {
 protected:
@@ -177,14 +177,14 @@ public:
         cout << "Your new garage is created." << endl;
     }
 
-    vector<Vehicle *> GarageVehicles; // we will store all vehicles here, there will be a fixed no of spaces available
+    vector<Vehicle *> GarageVehicles; // we will store all vehicles here, there will be a fixed number of spaces available
 
-    void vehicleIndex() // prints how many vehicles there are - works!
+    void vehicleIndex() // prints how many vehicles there are and max capacity for garage
     {
         cout << "There are " << this->GarageVehicles.size() << " vehicles in the garage, capacity is " << maxParkingSpaces << " parking spaces\n" << endl;
     }
 
-    void listOfVehicles()
+    void listOfVehicles() 
     {
         cout << "These vehicles are in the garage right now:" << endl;
         for (int i = 0; i < GarageVehicles.size(); i++)
@@ -198,7 +198,7 @@ public:
             cout << "Number of trucks:\t" << truckCounter << endl;
     }
 
-    void addVehicle(Vehicle *x) // add vehicle to list of vehicles - works?
+    void addVehicle(Vehicle *x) // add vehicle to list of vehicles
     {
         GarageVehicles.push_back(x);
         counter++;
@@ -240,7 +240,7 @@ public:
         return 0;
     }
 
-    Vehicle *removeVehicle(string searchReg) //remove vehicle from list of vehicles
+    Vehicle *removeVehicle(string searchReg) // remove specific vehicle from list of vehicles
     {
         for (int i = 0; i < GarageVehicles.size(); i++)
         {
@@ -257,7 +257,7 @@ public:
         return 0;
     }
 
-    Vehicle *destroyVehicles()
+    Vehicle *destroyVehicles() // using for loop to delete all elements in list of vehicles and setting counters to 0
     {
         for (int i = 0; i < GarageVehicles.size(); i++)
         {
@@ -272,11 +272,9 @@ public:
         return 0;
     }
 
-    // function to remove all elements and then destroy garage, iterate through vector and delete element
-
     ~Garage() // destructor
     {
-        cout << "Garage is destroyed" << endl;
+        cout << "Point of no return - Garage is destroyed" << endl;
     }
 };
 
@@ -291,7 +289,7 @@ void mainMenu()
     cout << "Find vehicle \t Enter 4" << endl;
     cout << "Destroy garage \t Enter 5" << endl;
     cout << "__________________________"<< endl;
-    cout << "Exit?\t\tEnter 0\n" << endl;
+    cout << "Exit? \t\t Enter 0\n" << endl;
     cout << endl;
 }
 
